@@ -1,0 +1,256 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+html,
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.stApp {
+  /* background-color: #f6f8fc;
+  color: #172033; */
+}
+
+/* ---------- Layout ---------- */
+
+/* Main area: no dead space at the top */
+[data-testid="stMainBlockContainer"] {
+  padding: 0.5rem 3rem 3rem !important;
+  max-width: 1500px;
+}
+
+/* Streamlit's bar floats transparently over the page */
+[data-testid="stHeader"] {
+  background: transparent !important;
+}
+
+/* Keep the top toolbar and controls visible */
+[data-testid="stToolbar"],
+[data-testid="stHeader"],
+[data-testid="stSidebarCollapsedControl"] {
+  visibility: visible !important;
+  display: flex !important;
+  opacity: 1 !important;
+}
+
+div[data-testid="stElementContainer"]:has(.app-header),
+div[data-testid="element-container"]:has(.app-header) {
+  position: sticky;
+  top: 0.5rem;
+  z-index: 999;
+}
+
+.app-header {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  background: linear-gradient(120deg, #172b4d, #244b80);
+  border-radius: 16px;
+  padding: 1.25rem; /* right padding clears Deploy/menu */
+  margin-bottom: 1rem;
+  box-shadow: 0 6px 18px rgba(23, 43, 77, 0.18);
+}
+
+.app-header .brand {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.app-header .tagline {
+  color: #e0e9f7;
+  font-size: 0.9rem;
+}
+
+.brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.brand-logo {
+  height: 40px;
+  width: 40px;
+  border-radius: 8px;
+}
+
+/* .app-header .badge {
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+} */
+
+/* ---------- Sidebar ---------- */
+
+[data-testid="stSidebarNav"]::before {
+  content: "Churn Intelligence";
+  display: block;
+  font-weight: 700;
+  font-size: 1.15rem;
+  /* color: #172b4d; */
+  padding: 1rem 1.25rem 0.5rem;
+}
+
+[data-testid="stSidebar"] {
+  /* background-color: #ffffff; */
+  border-right: 1px solid #e7ebf3;
+}
+
+/* Sidebar text and navigation */
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] span,
+[data-testid="stSidebar"] div[role="radiogroup"] {
+  /* color: #172b4d; */
+}
+
+[data-testid="stSidebar"] div[role="radiogroup"] label {
+  /* color: #172b4d !important; */
+  opacity: 1 !important;
+}
+
+/* Collapse button (inside the sidebar): dark on white */
+[data-testid="stSidebarCollapseButton"] {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  /* color: #172b4d !important; */
+}
+
+[data-testid="stSidebarCollapseButton"] button {
+  /* color: #172b4d !important; */
+  background-color: transparent !important;
+}
+
+[data-testid="stSidebarCollapseButton"] svg {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  /* color: #172b4d !important; */
+  fill: none;
+  stroke: currentColor;
+}
+
+/* Expand arrow (shown when the sidebar is collapsed): sits over the dark header */
+[data-testid="stSidebarCollapsedControl"] button,
+[data-testid="stSidebarCollapsedControl"] svg {
+  /* color: #ffffff !important;
+  background-color: transparent !important; */
+  fill: none;
+  stroke: currentColor;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* ---------- Typography ---------- */
+
+h1,
+h2,
+h3 {
+  /* color: #172b4d; */
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.page-subtitle {
+  /* color: #68758a; */
+  font-size: 0.95rem;
+  margin-top: -0.5rem;
+  margin-bottom: 2rem;
+}
+
+.section-label {
+  /* color: #68758a; */
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ---------- Cards and charts ---------- */
+
+.chart-heading {
+  /* color: #172b4d; */
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.chart-description {
+  /* color: #68758a; */
+  font-size: 0.82rem;
+  margin-bottom: 0.75rem;
+}
+
+.chart-card {
+  background: #ffffff;
+  border: 1px solid #e5eaf2;
+  border-radius: 14px;
+  padding: 1rem 1rem 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.welcome-card {
+  background: linear-gradient(120deg, #172b4d, #244b80);
+  color: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  margin: 1.5rem 0;
+}
+
+.welcome-card h2 {
+  /* color: #ffffff; */
+  font-size: 1.65rem;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-card p {
+  /* color: #e0e9f7; */
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+/* ---------- Metrics and forms ---------- */
+
+div[data-testid="stMetric"] {
+  /* background: #ffffff; */
+  border: 1px solid #e5eaf2;
+  border-radius: 14px;
+  padding: 1.25rem 1.4rem;
+  min-height: 120px;
+  box-shadow: 0 2px 8px rgba(23, 43, 77, 0.03);
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+div[data-testid="stMetric"]:hover {
+  border-color: #c8d6ea;
+  box-shadow: 0 5px 16px rgba(23, 43, 77, 0.07);
+}
+
+div[data-testid="stMetricLabel"] {
+  /* color: #68758a; */
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+div[data-testid="stMetricValue"] {
+  /* color: #172b4d; */
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+div[data-testid="stForm"] {
+  /* background: #ffffff; */
+  padding: 1.5rem;
+  border: 1px solid #e7ebf3;
+  border-radius: 12px;
+}
