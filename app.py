@@ -1,4 +1,5 @@
 import base64
+import joblib
 from pathlib import Path
 
 import streamlit as st
@@ -9,6 +10,25 @@ from views import insights, overview, prediction
 
 BASE_DIR = Path(__file__).parent
 ASSETS = BASE_DIR / "assets"  # put favicon.png and logo.png in this folder
+
+
+MODEL_PATH = Path(__file__).parent / "models" / "logistic_regression_bundle.joblib"
+
+
+@st.cache_resource
+def load_model_bundle():
+    return joblib.load(MODEL_PATH)
+
+
+bundle = load_model_bundle()
+
+model = bundle["model"]
+preprocessor = bundle["preprocessor"]
+feature_columns = bundle["feature_columns"]
+model_name = bundle["model_name"]
+target_classes = bundle["target_classes"]
+feature_engineering = bundle["feature_engineering"]
+
 
 # 1. Browser tab icon (must be the first Streamlit call)
 st.set_page_config(

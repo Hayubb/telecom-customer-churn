@@ -6,11 +6,7 @@ body {
 }
 
 .stApp {
-  /* background-color: #f6f8fc;
-  color: #172033; */
 }
-
-/* ---------- Layout ---------- */
 
 /* Main area: no dead space at the top */
 [data-testid="stMainBlockContainer"] {
@@ -18,7 +14,6 @@ body {
   max-width: 1500px;
 }
 
-/* Streamlit's bar floats transparently over the page */
 [data-testid="stHeader"] {
   background: transparent !important;
 }
@@ -101,17 +96,7 @@ div[data-testid="element-container"]:has(.app-header) {
   border-right: 1px solid #e7ebf3;
 }
 
-/* Sidebar text and navigation */
-[data-testid="stSidebar"] h1,
-[data-testid="stSidebar"] p,
-[data-testid="stSidebar"] label,
-[data-testid="stSidebar"] span,
-[data-testid="stSidebar"] div[role="radiogroup"] {
-  /* color: #172b4d; */
-}
-
 [data-testid="stSidebar"] div[role="radiogroup"] label {
-  /* color: #172b4d !important; */
   opacity: 1 !important;
 }
 
@@ -148,12 +133,9 @@ div[data-testid="element-container"]:has(.app-header) {
   visibility: visible !important;
 }
 
-/* ---------- Typography ---------- */
-
 h1,
 h2,
 h3 {
-  /* color: #172b4d; */
   font-weight: 700;
   letter-spacing: -0.5px;
 }
@@ -172,8 +154,6 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-
-/* ---------- Cards and charts ---------- */
 
 .chart-heading {
   /* color: #172b4d; */
