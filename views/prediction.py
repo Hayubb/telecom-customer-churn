@@ -208,41 +208,105 @@ def render():
             st.divider()
             st.subheader("Assessment result")
 
-            result_col1, result_col2, result_col3 = st.columns(3)
+            churn_probability = float(probabilities[classes.index("Yes")])
+            stay_probability = float(probabilities[classes.index("No")])
 
-            with result_col1:
-                st.metric(
-                    "Predicted outcome",
-                    "Likely to churn" if prediction == "Yes" else "Likely to stay",
+            # These are illustrative UI thresholds, not validated
+            # business decision thresholds.
+            if churn_probability >= 0.70:
+                risk_label = "High"
+                st.warning(
+                    "High predicted churn risk. Consider reviewing "
+                    "this customer's experience and retention options."
                 )
+            elif churn_probability >= 0.40:
+                risk_label = "Moderate"
+                st.info(
+                    "Moderate predicted churn risk. Review the customer's "
+                    "account and service needs."
+                )
+            else:
+                risk_label = "Low"
+                st.success("Low predicted churn risk based on this model.")
 
-            with result_col2:
+            st.markdown(f"### {risk_label} risk")
+
+            metric1, metric2 = st.columns(2)
+
+            with metric1:
                 st.metric(
                     "Churn probability",
                     f"{churn_probability:.1%}",
                 )
 
-            with result_col3:
+            with metric2:
                 st.metric(
-                    "Average monthly spend",
-                    f"${average_monthly_spend:,.2f}",
+                    "Stay probability",
+                    f"{stay_probability:.1%}",
                 )
 
             st.progress(churn_probability)
 
-            if prediction == "Yes":
-                st.warning(
-                    "The model predicts that this customer will churn. "
-                    "Consider reviewing their contract, service experience, "
-                    "and available retention options."
+            st.caption(
+                "Probabilities are model estimates, not guarantees. "
+                "Risk categories use illustrative thresholds and have "
+                "not been validated as business decision cutoffs."
+            )
+
+            with st.expander("Customer profile summary"):
+                profile1, profile2 = st.columns(2)
+
+                with profile1:
+                    st.write(f"**Contract:** {contract}")
+                    st.write(f"**Tenure:** {tenure} months")
+                    st.write(f"**Internet service:** {internet_service}")
+
+                with profile2:
+                    st.write(f"**Monthly charges:** ${monthly_charges:,.2f}")
+                    st.write(f"**Total charges:** ${total_charges:,.2f}")
+                    st.write(
+                        "**Average monthly spend:** " f"${average_monthly_spend:,.2f}"
+                    )
+
+            st.markdown("### Suggested next steps")
+
+            if contract == "Month-to-month":
+                st.write(
+                    "- Review whether a longer-term plan offers "
+                    "the customer suitable value."
                 )
-            else:
-                st.success("The model predicts that this customer will stay.")
+
+            if tenure < 12:
+                st.write(
+                    "- Consider an onboarding check-in to identify "
+                    "unresolved service issues."
+                )
+
+            if tech_support == "No":
+                st.write(
+                    "- If relevant, explain the available technical " "support options."
+                )
+
+            if online_security == "No":
+                st.write(
+                    "- If relevant, review the customer's security "
+                    "needs and available service options."
+                )
+
+            if (
+                contract != "Month-to-month"
+                and tenure >= 12
+                and tech_support == "Yes"
+                and online_security == "Yes"
+            ):
+                st.write(
+                    "- Review customer feedback and service history "
+                    "before deciding whether further action is needed."
+                )
 
             st.caption(
-                "This is a model-based estimate, not a certainty. "
-                "Predictions depend on the information entered and the "
-                "patterns learned from the training dataset."
+                "Suggestions are rule-based prompts, not model outputs. "
+                "Confirm the customer's needs before taking action."
             )
 
         except FileNotFoundError as error:
