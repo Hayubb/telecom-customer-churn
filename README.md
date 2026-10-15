@@ -68,7 +68,7 @@ telecom-churn-ui/
 
 ![Churn Risk Assessment](screenshots/prediction.png)
 
-(screenshots/result.png)
+![Prediction](screenshots/result.png)
 
 ## Getting started
 
