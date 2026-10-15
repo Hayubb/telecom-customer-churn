@@ -7,17 +7,19 @@ churn.
 This capstone project combines customer analytics with a trained
 Logistic Regression model in an interactive Streamlit application.
 
+Live URL: https://telchurn.streamlit.app/prediction
+
 ## Features
 
--   **Overview dashboard:** high-level customer and churn metrics, churn
-    distribution, and a customer preview.
--   **Customer insights:** explore churn patterns across segments such
-    as contract type, internet service, payment method, and tenure.
--   **Churn risk assessment:** enter a customer's account, billing, and
-    service details to receive a model-based churn estimate and
-    probability.
--   **Retention prompts:** view simple rule-based suggestions to help
-    guide a customer-retention review.
+- **Overview dashboard:** high-level customer and churn metrics, churn
+  distribution, and a customer preview.
+- **Customer insights:** explore churn patterns across segments such
+  as contract type, internet service, payment method, and tenure.
+- **Churn risk assessment:** enter a customer's account, billing, and
+  service details to receive a model-based churn estimate and
+  probability.
+- **Retention prompts:** view simple rule-based suggestions to help
+  guide a customer-retention review.
 
 > **Important:** Predictions are estimates, not guarantees. The
 > displayed risk bands use illustrative thresholds and are not validated
@@ -26,18 +28,18 @@ Logistic Regression model in an interactive Streamlit application.
 
 ## Tech stack
 
--   Python
--   Streamlit
--   pandas
--   scikit-learn
--   Joblib
--   Plotly
+- Python
+- Streamlit
+- pandas
+- scikit-learn
+- Joblib
+- Plotly
 
 ## Project structure
 
 The main files and folders are expected to follow this layout:
 
-``` text
+```text
 telecom-churn-ui/
 ├── app.py
 ├── data/
@@ -45,50 +47,43 @@ telecom-churn-ui/
 ├── models/
 │   └── logistic_regression_bundle.joblib
 ├── views/
-│   └── prediction.py
+│   ├── insights.py
+    ├── overview.py
+    └── prediction.py
 ├── requirements.txt
 └── README.md
 ```
 
-Other view modules and supporting files may also be present.
+## Dashboard Preview
+
+### Overview
+
+![Telecom Churn Intelligence Overview](screenshots/overview.png)
+
+### Customer Insights
+
+![Customer Insights Dashboard](screenshots/insight.png)
+
+### Churn Risk Assessment
+
+![Churn Risk Assessment](screenshots/prediction.png)
+
+(screenshots/result.png)
 
 ## Getting started
 
 ### 1. Clone the repository
 
-``` bash
-git clone <your-repository-url>
+```bash
+git clone https://github.com/barakatokikiola/telecom-customer-churn.git
 cd telecom-churn-ui
 ```
 
-Replace `<your-repository-url>` with the URL of your Git repository.
-
 ### 2. Create and activate a virtual environment
-
-**Windows (PowerShell):**
-
-``` powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-```
-
-**Windows (Command Prompt):**
-
-``` bat
-python -m venv .venv
-.venv\Scripts\activate.bat
-```
-
-**macOS/Linux:**
-
-``` bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
 
 ### 3. Install dependencies
 
-``` bash
+```bash
 pip install -r requirements.txt
 ```
 
@@ -99,7 +94,7 @@ version when loading it.
 If you do not yet have a `requirements.txt`, install the main packages
 with:
 
-``` bash
+```bash
 pip install streamlit pandas plotly joblib scikit-learn==1.6.1
 ```
 
@@ -107,7 +102,7 @@ pip install streamlit pandas plotly joblib scikit-learn==1.6.1
 
 Confirm that the model bundle exists at:
 
-``` text
+```text
 models/logistic_regression_bundle.joblib
 ```
 
@@ -118,17 +113,15 @@ feature-engineering metadata.
 If the dashboard loads customer data from a CSV, confirm that the
 expected dataset is available at:
 
-``` text
+```text
 data/telco_churn.csv
 ```
-
-Keep local file paths consistent with the paths used in the application.
 
 ### 5. Run the dashboard
 
 From the project root, run:
 
-``` bash
+```bash
 streamlit run app.py
 ```
 
@@ -159,11 +152,13 @@ pipeline, and saved model.
 
 The recorded evaluation metrics for the Logistic Regression model were:
 
-  Metric       Score
-  ---------- -------
-  Accuracy     0.800
-  F1 score     0.592
-  ROC-AUC      0.842
+Metric Score
+
+---
+
+Accuracy 0.800
+F1 score 0.592
+ROC-AUC 0.842
 
 These are recorded model-evaluation results, not a guarantee of
 performance on new customers. Accuracy alone may not adequately reflect
@@ -174,38 +169,38 @@ imbalanced.
 
 For Streamlit Community Cloud or another hosting platform:
 
--   Set the application entry point to `app.py`.
--   Include required Python packages in `requirements.txt`.
--   Ensure the model bundle is included in the repository or made
-    available securely to the deployed app.
--   Check that the model was saved with a compatible scikit-learn
-    version.
--   Use repository-relative paths where possible, rather than
-    machine-specific absolute paths.
--   Test the deployed prediction workflow with a sample customer
-    profile.
+- Set the application entry point to `app.py`.
+- Include required Python packages in `requirements.txt`.
+- Ensure the model bundle is included in the repository or made
+  available securely to the deployed app.
+- Check that the model was saved with a compatible scikit-learn
+  version.
+- Use repository-relative paths where possible, rather than
+  machine-specific absolute paths.
+- Test the deployed prediction workflow with a sample customer
+  profile.
 
 Do not commit credentials, API keys, or other secrets to the repository.
 
 ## Limitations
 
--   Predicted probabilities are model estimates and may not be well
-    calibrated.
--   Risk categories are illustrative until appropriate business
-    thresholds are validated.
--   Rule-based retention prompts are suggestions for review, not
-    guarantees of successful retention.
--   Model performance may change when applied to customers whose
-    behavior differs from the training data.
+- Predicted probabilities are model estimates and may not be well
+  calibrated.
+- Risk categories are illustrative until appropriate business
+  thresholds are validated.
+- Rule-based retention prompts are suggestions for review, not
+  guarantees of successful retention.
+- Model performance may change when applied to customers whose
+  behavior differs from the training data.
 
 ## Future improvements
 
--   Validate and document decision thresholds for the risk bands.
--   Monitor the model and evaluate performance by churn class.
--   Improve input validation and customer-profile consistency checks.
--   Add tests for preprocessing and prediction behavior.
--   Document data provenance and responsible use of customer
-    information.
+- Validate and document decision thresholds for the risk bands.
+- Monitor the model and evaluate performance by churn class.
+- Improve input validation and customer-profile consistency checks.
+- Add tests for preprocessing and prediction behavior.
+- Document data provenance and responsible use of customer
+  information.
 
 ## Project status
 
